@@ -46,7 +46,6 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         menuCollectionView?.backgroundColor = .white
         menuCollectionView?.showsHorizontalScrollIndicator = false
         
-        
         let contentView = UIView(frame: CGRect(x: 0, y: menuView.frame.height, width: self.view.frame.width, height:  self.view.frame.height - menuView.frame.height))
         self.view.addSubview(contentView)
         
@@ -63,7 +62,7 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         contentCollectionView?.isPagingEnabled = true
         contentCollectionView?.backgroundColor = .white
         contentView.addSubview(contentCollectionView!)
-        contentView.backgroundColor = .green
+        contentCollectionView?.bounces = false
         
         firstVC.view = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
         secondVC.view = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
