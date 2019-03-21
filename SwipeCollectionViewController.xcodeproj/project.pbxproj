@@ -11,6 +11,7 @@
 		447F4A0F223A3AD000175A2D /* SwipeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F4A0E223A3AD000175A2D /* SwipeCollectionViewController.swift */; };
 		447F4A14223A3AD100175A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447F4A13223A3AD100175A2D /* Assets.xcassets */; };
 		447F4A17223A3AD100175A2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447F4A15223A3AD100175A2D /* LaunchScreen.storyboard */; };
+		4489F73D22437233003192F2 /* NumberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4489F73C22437233003192F2 /* NumberCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		447F4A13223A3AD100175A2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		447F4A16223A3AD100175A2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		447F4A18223A3AD100175A2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4489F73C22437233003192F2 /* NumberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				447F4A13223A3AD100175A2D /* Assets.xcassets */,
 				447F4A15223A3AD100175A2D /* LaunchScreen.storyboard */,
 				447F4A18223A3AD100175A2D /* Info.plist */,
+				4489F73C22437233003192F2 /* NumberCollectionViewCell.swift */,
 			);
 			path = SwipeCollectionViewController;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				447F4A0F223A3AD000175A2D /* SwipeCollectionViewController.swift in Sources */,
+				4489F73D22437233003192F2 /* NumberCollectionViewCell.swift in Sources */,
 				447F4A0D223A3AD000175A2D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
