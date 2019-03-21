@@ -129,6 +129,7 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
 
         if closestCellIndex != -1 {
             self.menuCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+            self.contentCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
         }
     }
     
@@ -140,6 +141,16 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         if !decelerate {
             scrollToNearestVisibleCollectionViewCell()
         }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        if scrollView == self.menuCollectionView{
+        }else{
+            let row = Int(targetContentOffset.pointee.x / view.frame.width)
+            self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
+        }
+       
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
