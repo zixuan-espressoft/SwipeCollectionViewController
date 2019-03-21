@@ -16,13 +16,6 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
     let contentCVLayout:UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     let cellIdentifier = "mycell"
-    var textLabel: UILabel = UILabel()
-    var menuView = UIView()
-    
-    let cellWidth = 60
-    
-    let color: [UIColor] = [.red, .green, .blue]
-    
     var viewControllers: [UIViewController] = []
     
     let firstVC = UIViewController()
@@ -33,7 +26,7 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        menuView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        let menuView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         self.view.addSubview(menuView)
         menuView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         menuView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -100,7 +93,6 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         }else{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? NumberCollectionViewCell{
                 cell.textLabel.text = "\(indexPath.item)"
-                cell.backgroundColor = color[indexPath.item]
                 return cell
             }
         }
