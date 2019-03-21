@@ -80,7 +80,7 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewControllers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -142,10 +142,6 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
             self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
         }
        
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
     }
 }
 
