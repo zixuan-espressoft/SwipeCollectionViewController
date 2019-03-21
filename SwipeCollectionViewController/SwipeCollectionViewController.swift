@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+class SwipeCollectionViewController: UIViewController{
     
     var menuCollectionView: UICollectionView?
     var contentCollectionView: UICollectionView?
@@ -73,12 +73,9 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         viewControllers = [firstVC,secondVC,thirdVC]
         
     }
-    
-    override var prefersStatusBarHidden: Bool{
-        return true
-    }
+}
 
-
+extension SwipeCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewControllers.count
     }
@@ -97,7 +94,9 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
         }
         return UICollectionViewCell()
     }
-    
+}
+
+extension SwipeCollectionViewController: UIScrollViewDelegate{
     func scrollToNearestVisibleCollectionViewCell() {
         let visibleCenterPositionOfScrollView = Float((menuCollectionView?.contentOffset.x)! + ((self.menuCollectionView?.bounds.size.width)! / 2))
         var closestCellIndex = -1
@@ -117,7 +116,7 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
                 }
             }
         }
-
+        
         if closestCellIndex != -1 {
             self.menuCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
             self.contentCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
@@ -141,7 +140,6 @@ class SwipeCollectionViewController: UIViewController, UICollectionViewDelegate,
             let row = Int(targetContentOffset.pointee.x / view.frame.width)
             self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
         }
-       
+        
     }
 }
-
