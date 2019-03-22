@@ -89,6 +89,11 @@ extension SwipeCollectionViewController: UICollectionViewDelegate, UICollectionV
         }
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.menuCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.contentCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
 }
 
 extension SwipeCollectionViewController: UIScrollViewDelegate{
@@ -113,8 +118,9 @@ extension SwipeCollectionViewController: UIScrollViewDelegate{
         }
         
         if closestCellIndex != -1 {
-            self.menuCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+//            self.menuCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
             self.contentCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+            self.menuCollectionView?.selectItem(at: IndexPath(row: closestCellIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         }
     }
     
@@ -133,7 +139,8 @@ extension SwipeCollectionViewController: UIScrollViewDelegate{
         if scrollView == self.menuCollectionView{
         }else{
             let row = Int(targetContentOffset.pointee.x / view.frame.width)
-            self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
+//            self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
+            self.menuCollectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         }
         
     }
