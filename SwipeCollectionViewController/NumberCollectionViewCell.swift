@@ -33,4 +33,16 @@ class NumberCollectionViewCell: UICollectionViewCell {
         textLabel.text = textLabelText
     }
     
+    override var isSelected: Bool{
+        didSet{
+            textLabel.textColor = isSelected ? .green : .black
+        }
+    }
+    
+    override var isHighlighted: Bool{
+        didSet{
+            textLabel.textColor = isSelected ? .green : .black
+        }
+    }
+    
 }

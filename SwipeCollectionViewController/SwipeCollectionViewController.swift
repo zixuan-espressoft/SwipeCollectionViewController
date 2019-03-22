@@ -59,6 +59,8 @@ class SwipeCollectionViewController: UIViewController{
         secondVC.view.backgroundColor = .yellow
         thirdVC.view.backgroundColor = .orange
         viewControllers = [firstVC,secondVC,thirdVC]
+        
+        self.setPageAt(page: 1)
     }
     
     func setCollectionViewProperty(collectionView: UICollectionView){
@@ -67,6 +69,11 @@ class SwipeCollectionViewController: UIViewController{
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    func setPageAt(page: Int) {
+         self.menuCollectionView?.selectItem(at: IndexPath(row: page, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        self.contentCollectionView?.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -118,7 +125,6 @@ extension SwipeCollectionViewController: UIScrollViewDelegate{
         }
         
         if closestCellIndex != -1 {
-//            self.menuCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
             self.contentCollectionView?.scrollToItem(at: IndexPath(row: closestCellIndex, section: 0), at: .centeredHorizontally, animated: true)
             self.menuCollectionView?.selectItem(at: IndexPath(row: closestCellIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         }
@@ -139,7 +145,6 @@ extension SwipeCollectionViewController: UIScrollViewDelegate{
         if scrollView == self.menuCollectionView{
         }else{
             let row = Int(targetContentOffset.pointee.x / view.frame.width)
-//            self.menuCollectionView?.scrollToItem(at: IndexPath(row: row, section: 0), at: .centeredHorizontally, animated: true)
             self.menuCollectionView?.selectItem(at: IndexPath(row: row, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         }
         
