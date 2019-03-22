@@ -24,54 +24,49 @@ class SwipeCollectionViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        let menuView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-        self.view.addSubview(menuView)
-        menuView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        menuView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        menuView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        
-        menuCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: menuView.frame.width, height: menuView.frame.height), collectionViewLayout: UICollectionViewFlowLayout.init())
+        //MenuView
+        menuCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50), collectionViewLayout: UICollectionViewFlowLayout())
         menuCVLayout.scrollDirection = .horizontal
         menuCVLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         menuCVLayout.itemSize = CGSize(width: 50, height: 50)
         menuCollectionView?.setCollectionViewLayout(menuCVLayout, animated: true)
-        menuCollectionView?.delegate = self
-        menuCollectionView?.dataSource = self
-        menuView.addSubview(menuCollectionView!)
-        menuCollectionView?.contentInset = UIEdgeInsets(top: 0, left: menuView.center.x - 30, bottom: 0, right: menuView.center.x - 30)
+        self.view.addSubview(menuCollectionView!)
+        menuCollectionView?.contentInset = UIEdgeInsets(top: 0, left: self.view.center.x - 30, bottom: 0, right: self.view.center.x - 30)
         menuCollectionView?.register(NumberCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        menuCollectionView?.decelerationRate = .fast
-        menuCollectionView?.backgroundColor = .white
-        menuCollectionView?.showsHorizontalScrollIndicator = false
+        menuCollectionView?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        menuCollectionView?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        menuCollectionView?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.setCollectionViewProperty(collectionView: menuCollectionView!)
         
-        let contentView = UIView(frame: CGRect(x: 0, y: menuView.frame.height, width: self.view.frame.width, height:  self.view.frame.height - menuView.frame.height))
-        self.view.addSubview(contentView)
-        
-        contentCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height), collectionViewLayout: UICollectionViewFlowLayout())
+        //ContentView
+        contentCollectionView = UICollectionView(frame: CGRect(x: 0, y: (menuCollectionView?.frame.height)!, width: self.view.frame.width, height: self.view.frame.height - (menuCollectionView?.frame.height)!), collectionViewLayout: UICollectionViewFlowLayout())
         contentCVLayout.scrollDirection = .horizontal
         contentCVLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        contentCVLayout.itemSize = CGSize(width: contentView.frame.width, height: contentView.frame.height)
+        contentCVLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height - (menuCollectionView?.frame.height)!)
         contentCVLayout.minimumLineSpacing = 0
         contentCollectionView?.setCollectionViewLayout(contentCVLayout, animated: true)
-        contentCollectionView?.delegate = self
-        contentCollectionView?.dataSource = self
         contentCollectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        contentCollectionView?.showsHorizontalScrollIndicator = false
         contentCollectionView?.isPagingEnabled = true
-        contentCollectionView?.backgroundColor = .white
-        contentView.addSubview(contentCollectionView!)
+        self.view.addSubview(contentCollectionView!)
         contentCollectionView?.bounces = false
-        
-        firstVC.view = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
-        secondVC.view = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
-        thirdVC.view = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
+        self.setCollectionViewProperty(collectionView: contentCollectionView!)
+
+        firstVC.view = UIView(frame: CGRect(x: 0, y: 0, width: (contentCollectionView?.frame.width)!, height: (contentCollectionView?.frame.height)!))
+        secondVC.view = UIView(frame: CGRect(x: 0, y: 0, width: (contentCollectionView?.frame.width)!, height: (contentCollectionView?.frame.height)!))
+        thirdVC.view = UIView(frame: CGRect(x: 0, y: 0, width: (contentCollectionView?.frame.width)!, height: (contentCollectionView?.frame.height)!))
         firstVC.view.backgroundColor = .purple
         secondVC.view.backgroundColor = .yellow
         thirdVC.view.backgroundColor = .orange
         viewControllers = [firstVC,secondVC,thirdVC]
-        
+    }
+    
+    func setCollectionViewProperty(collectionView: UICollectionView){
+        collectionView.decelerationRate = .fast
+        collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 }
 
